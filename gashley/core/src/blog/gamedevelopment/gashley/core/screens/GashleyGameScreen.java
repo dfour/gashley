@@ -1,10 +1,13 @@
 package blog.gamedevelopment.gashley.core.screens;
 
 import blog.gamedevelopment.gashley.core.GashleyGame;
+import blog.gamedevelopment.gashley.core.input.GashleyBaseController;
 import blog.gamedevelopment.gashley.core.input.KeyboardController;
+import blog.gamedevelopment.gashley.core.listnerers.GashleyB2DContactListener;
 import blog.gamedevelopment.gashley.core.systems.PhysicsDebugSystem;
 import blog.gamedevelopment.gashley.core.systems.PhysicsSystem;
 import blog.gamedevelopment.gashley.core.systems.RenderingSystem;
+import blog.gamedevelopment.gashley.core.utils.BodyFactory;
 
 import com.badlogic.ashley.core.PooledEngine;
 import com.badlogic.gdx.InputProcessor;
@@ -23,7 +26,8 @@ public abstract class GashleyGameScreen implements Screen {
 	protected RenderingSystem renderingSystem;
 	protected PhysicsDebugSystem physicsDebugSystem;
 	protected PhysicsSystem physicsSystem;
-	protected InputProcessor controller;
+	protected GashleyBaseController controller;
+	protected BodyFactory bodyFactory;
 	
 	public GashleyGameScreen(GashleyGame p){
 		this(p,0,-10f);
@@ -39,13 +43,14 @@ public abstract class GashleyGameScreen implements Screen {
 		engine = new PooledEngine();
 		controller = new KeyboardController();
 		world = new World(new Vector2(worldGravityX,worldGravityY), true);
-		//world.setContactListener(new B2dContactListener());
-		//bodyFactory = BodyFactory.getInstance(world);
+		world.setContactListener(new GashleyB2DContactListener());
+		bodyFactory = BodyFactory.getInstance(world);
+		
 		physicsSystem = new PhysicsSystem(world);
 		engine.addSystem(physicsSystem);
 		
 		renderingSystem = new RenderingSystem(sb);
-        engine.addSystem(new PhysicsSystem(world));
+        engine.addSystem(renderingSystem);
         
         physicsDebugSystem = new PhysicsDebugSystem(world, renderingSystem.getCamera());
         engine.addSystem(physicsDebugSystem);

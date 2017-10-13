@@ -13,7 +13,6 @@ public class AnimationSystem extends IteratingSystem {
 
     ComponentMapper<TextureComponent> tm;
     ComponentMapper<AnimationComponent> am;
-    ComponentMapper<StateComponent> sm;
 
     @SuppressWarnings("unchecked")
 	public AnimationSystem(){
@@ -23,20 +22,18 @@ public class AnimationSystem extends IteratingSystem {
 
         tm = ComponentMapper.getFor(TextureComponent.class);
         am = ComponentMapper.getFor(AnimationComponent.class);
-        sm = ComponentMapper.getFor(StateComponent.class);
     }
 
     @Override
     protected void processEntity(Entity entity, float deltaTime) {
 
         AnimationComponent ani = am.get(entity);
-        StateComponent state = sm.get(entity);
 
-        if(ani.animations.containsKey(state.get())){
+        if(ani.animations.containsKey(ani.currentState)){
             TextureComponent tex = tm.get(entity);
-            tex.region = ani.animations.get(state.get()).getKeyFrame(state.time, state.isLooping);
+            tex.region = ani.animations.get(ani.currentState).getKeyFrame(ani.stateTime, ani.looping.get(ani.currentState));
         }
 
-        state.time += deltaTime;
+        ani.stateTime += deltaTime;
     }
 }

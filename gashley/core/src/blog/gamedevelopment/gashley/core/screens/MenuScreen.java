@@ -25,12 +25,13 @@ public class MenuScreen extends Scene2dScreenBase {
 		btnStart = new TextButton("New Game", skin);
 		btnPrefs = new TextButton("Preferences", skin);
 		btnQuit = new TextButton("Exit", skin);
-
-        displayTable.add(btnStart).width(300).height(50);
-        displayTable.row().pad(10, 0, 0, 0);
-        displayTable.add(btnPrefs).width(300).height(50);
-        displayTable.row().pad(10, 0, 0, 0);
-        displayTable.add(btnQuit).width(300).height(50);
+        
+        //add buttons to table
+        displayTable.add(btnStart).fillX().uniformX();
+        displayTable.row().pad(10, 0, 10, 0);
+        displayTable.add(btnPrefs).fillX().uniformX();
+        displayTable.row();
+        displayTable.add(btnQuit).fillX().uniformX();
 
 		
 
@@ -57,6 +58,13 @@ public class MenuScreen extends Scene2dScreenBase {
 		btnStart.setChecked(false);
 		btnPrefs.setChecked(false);
 		btnQuit.setChecked(false);	
+		
+		// for debug only //
+		MenuScreen.this.returnScreen = GashleyGame.GAME;
+		MenuScreen.this.isReturning = true;
+		
 	}
+	
+	
 }
 

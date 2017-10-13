@@ -26,8 +26,8 @@ public class Scene2dScreenBase implements Screen{
 	protected int sh;
 	protected TextureAtlas atlasGui;
 	protected TiledDrawable bgTiled;
-	protected float fadeIn = 0.7f;
-	protected float fadeOut = 0.7f;
+	protected float fadeIn = 0.01f;
+	protected float fadeOut = 0.01f;  //temp debug speed to make it quick
 	protected boolean isReturning = false;
 	protected int returnScreen;
 	

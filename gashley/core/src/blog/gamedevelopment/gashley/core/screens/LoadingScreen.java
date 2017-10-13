@@ -148,7 +148,7 @@ public class LoadingScreen implements Screen {
         }
 		
 		stage.act();
-		//stage.draw();
+		stage.draw();
 	}
 
 	@Override

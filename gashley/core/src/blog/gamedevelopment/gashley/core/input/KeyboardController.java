@@ -2,13 +2,8 @@ package blog.gamedevelopment.gashley.core.input;
 
 import com.badlogic.gdx.Input.Keys;
 import com.badlogic.gdx.InputProcessor;
-import com.badlogic.gdx.math.Vector2;
 
-public class KeyboardController  implements InputProcessor {
-	public boolean left,right,up,down;
-	public boolean isMouse1Down, isMouse2Down,isMouse3Down;
-	public boolean isDragged;
-	public Vector2 mouseLocation = new Vector2(0,0);
+public class KeyboardController extends GashleyBaseController {
 
 	@Override
 	public boolean keyDown(int keycode) {
@@ -109,6 +104,7 @@ public class KeyboardController  implements InputProcessor {
 	}
 	@Override
 	public boolean scrolled(int amount) {
+		lastScrollAmount = amount;
 		return false;
 	}
 }
