@@ -10,10 +10,11 @@ import blog.gamedevelopment.gashley.core.systems.RenderingSystem;
 import blog.gamedevelopment.gashley.core.utils.BodyFactory;
 
 import com.badlogic.ashley.core.PooledEngine;
-import com.badlogic.gdx.InputProcessor;
 import com.badlogic.gdx.Screen;
 import com.badlogic.gdx.graphics.OrthographicCamera;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
+import com.badlogic.gdx.graphics.g2d.TextureAtlas;
+import com.badlogic.gdx.graphics.g2d.TextureAtlas.AtlasRegion;
 import com.badlogic.gdx.math.Vector2;
 import com.badlogic.gdx.physics.box2d.World;
 
@@ -28,6 +29,8 @@ public abstract class GashleyGameScreen implements Screen {
 	protected PhysicsSystem physicsSystem;
 	protected GashleyBaseController controller;
 	protected BodyFactory bodyFactory;
+	protected TextureAtlas atlasGui;
+	
 	
 	public GashleyGameScreen(GashleyGame p){
 		this(p,0,-10f);
@@ -39,6 +42,7 @@ public abstract class GashleyGameScreen implements Screen {
 	}
 	
 	public void init(float worldGravityX, float worldGravityY){
+		atlasGui = parent.assMan.manager.get("images/gui.atlas");
 		sb = new SpriteBatch();
 		engine = new PooledEngine();
 		controller = new KeyboardController();

@@ -24,6 +24,7 @@ public class GAssetManager {
 	
 	// Textures
 	public final String imagesPack = "images/game.atlas";
+	public final String guiPack = "images/gui.atlas";
 	
 	public void addTextureAtlas(String fileLocation){
 		textureAtlases.add(fileLocation);
@@ -31,6 +32,7 @@ public class GAssetManager {
 	
 	public void addImagesToLoadingQueue(){
 		manager.load(imagesPack, TextureAtlas.class);
+		manager.load(guiPack, TextureAtlas.class);
 		for(String fileLoc:textureAtlases){
 			manager.load(fileLoc,TextureAtlas.class);
 		}

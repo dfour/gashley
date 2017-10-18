@@ -26,18 +26,6 @@ com.badlogic.gdx.graphics.Color: {
 		b: 0.4333333
 		a: 1
 	}
-	Dark-Grey: {
-		r: 0.19
-		g: 0.19
-		b: 0.19
-		a: 1
-	}
-	Light-Grey: {
-		r: 0.34
-		g: 0.34
-		b: 0.34
-		a: 1
-	}
 	white: {
 		r: 1
 		g: 1
@@ -68,7 +56,7 @@ com.badlogic.gdx.scenes.scene2d.ui.Skin$TintedDrawable: {
 com.badlogic.gdx.scenes.scene2d.ui.Button$ButtonStyle: {
 	default: {
 		up: button
-		down: button_down
+		down: button-down
 	}
 	small: {
 		up: button-small
@@ -91,6 +79,7 @@ com.badlogic.gdx.scenes.scene2d.ui.CheckBox$CheckBoxStyle: {
 }
 com.badlogic.gdx.scenes.scene2d.ui.ImageButton$ImageButtonStyle: {
 	default: {
+		up: button
 		down: button-down
 	}
 }
@@ -98,7 +87,7 @@ com.badlogic.gdx.scenes.scene2d.ui.ImageTextButton$ImageTextButtonStyle: {
 	default: {
 		font: font-big
 		up: button
-		down: button_down
+		down: button-down
 	}
 }
 com.badlogic.gdx.scenes.scene2d.ui.Label$LabelStyle: {
@@ -117,9 +106,9 @@ com.badlogic.gdx.scenes.scene2d.ui.List$ListStyle: {
 	default: {
 		font: font
 		fontColorSelected: white
-		fontColorUnselected: Dark-Grey
-		selection: button
-		background: background-light
+		fontColorUnselected: dark-cyan
+		selection: pale-blue
+		background: list
 	}
 	plain: {
 		font: font
@@ -156,7 +145,7 @@ com.badlogic.gdx.scenes.scene2d.ui.ScrollPane$ScrollPaneStyle: {
 com.badlogic.gdx.scenes.scene2d.ui.SelectBox$SelectBoxStyle: {
 	default: {
 		font: font
-		fontColor: Dark-Grey
+		fontColor: dark-cyan
 		background: select-box
 		scrollStyle: scroll
 		listStyle: plain
@@ -184,19 +173,19 @@ com.badlogic.gdx.scenes.scene2d.ui.TextButton$TextButtonStyle: {
 	default: {
 		font: font-big
 		up: button
-		down: button_down
+		down: button-down
 	}
 	small: {
 		font: font
-		up: button
-		down: button_down
+		up: button-small
+		down: button-small-down
 	}
 }
 com.badlogic.gdx.scenes.scene2d.ui.TextField$TextFieldStyle: {
 	default: {
 		font: font
 		fontColor: black
-		background: background-light
+		background: textfield
 		cursor: black
 		selection: pale-blue
 	}

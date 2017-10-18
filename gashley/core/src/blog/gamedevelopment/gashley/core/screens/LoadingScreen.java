@@ -23,7 +23,7 @@ public class LoadingScreen implements Screen {
 	private GashleyGame parent;
 	private TextureAtlas atlas;
 	private AtlasRegion title;
-	private Animation<TextureRegion> flameAnimation;
+	private Animation<TextureRegion> loadingAnimation;
 	
 	public final int IMAGE = 0;		// loading images
 	public final int FONT = 1;		// loading fonts
@@ -34,7 +34,7 @@ public class LoadingScreen implements Screen {
 	private int currentLoadingStage = 0;
 	
 	// timer for exiting loading screen
-	public float countDown = 0.1f;
+	public float countDown = 2f;
 	private AtlasRegion dash;
 	private Stage stage;
 	private Table table;
@@ -63,11 +63,11 @@ public class LoadingScreen implements Screen {
 				
 		// get images used to display loading progress
 		atlas = parent.assMan.manager.get("images/loading.atlas");
-		title = atlas.findRegion("staying-alight-logo");
-		dash = atlas.findRegion("loading-dash");
-		background = atlas.findRegion("flamebackground");
-		copyright = atlas.findRegion("copyright");
-		flameAnimation = new Animation<TextureRegion>(0.07f, atlas.findRegions("flames/flames"), PlayMode.LOOP);
+		title = atlas.findRegion("logo");
+		dash = atlas.findRegion("loading_dash");
+		background = atlas.findRegion("background");
+		copyright = atlas.findRegion("subtext");
+		loadingAnimation = new Animation<TextureRegion>(0.1f, atlas.findRegions("loading_anim"), PlayMode.LOOP);
 		
 	}
 
@@ -83,16 +83,16 @@ public class LoadingScreen implements Screen {
 		table.setBackground(new TiledDrawable(background));
 		
 		loadingTable = new Table();
-		loadingTable.add(new LoadingBarPart(dash,flameAnimation));
-		loadingTable.add(new LoadingBarPart(dash,flameAnimation));
-		loadingTable.add(new LoadingBarPart(dash,flameAnimation));
-		loadingTable.add(new LoadingBarPart(dash,flameAnimation));
-		loadingTable.add(new LoadingBarPart(dash,flameAnimation));
-		loadingTable.add(new LoadingBarPart(dash,flameAnimation));
-		loadingTable.add(new LoadingBarPart(dash,flameAnimation));
-		loadingTable.add(new LoadingBarPart(dash,flameAnimation));
-		loadingTable.add(new LoadingBarPart(dash,flameAnimation));
-		loadingTable.add(new LoadingBarPart(dash,flameAnimation));
+		loadingTable.add(new LoadingBarPart(dash,loadingAnimation));
+		loadingTable.add(new LoadingBarPart(dash,loadingAnimation));
+		loadingTable.add(new LoadingBarPart(dash,loadingAnimation));
+		loadingTable.add(new LoadingBarPart(dash,loadingAnimation));
+		loadingTable.add(new LoadingBarPart(dash,loadingAnimation));
+		loadingTable.add(new LoadingBarPart(dash,loadingAnimation));
+		loadingTable.add(new LoadingBarPart(dash,loadingAnimation));
+		loadingTable.add(new LoadingBarPart(dash,loadingAnimation));
+		loadingTable.add(new LoadingBarPart(dash,loadingAnimation));
+		loadingTable.add(new LoadingBarPart(dash,loadingAnimation));
 		
 		
 		table.add(titleImage).align(Align.center).pad(10, 0, 0, 0).colspan(10); 
@@ -176,7 +176,7 @@ public class LoadingScreen implements Screen {
 	class LoadingBarPart extends Actor{
 		
 		private AtlasRegion image = dash;
-		private Animation<TextureRegion> flameAnimation;
+		private Animation<TextureRegion> anim;
 		private float stateTime = 0f; 
 		private TextureRegion currentFrame;
 
@@ -184,20 +184,21 @@ public class LoadingScreen implements Screen {
 		public LoadingBarPart(AtlasRegion ar, Animation<TextureRegion> an) {
 			super();
 			image = ar;
-			flameAnimation = an;
+			anim = an;
 			this.setWidth(30);
 			this.setHeight(25);
 			this.setVisible(false);
-			//this.debug();
 		}
 
 		@Override
 		public void draw(Batch batch, float parentAlpha) {
 			super.draw(batch, parentAlpha);
-			batch.draw(image, getX(),getY(), 30, 30);
-			batch.setBlendFunction(GL20.GL_SRC_ALPHA, GL20.GL_ONE);
-			batch.draw(currentFrame, getX()-5,getY(), 40, 40);
-			batch.setBlendFunction(GL20.GL_SRC_ALPHA, GL20.GL_ONE_MINUS_SRC_ALPHA);
+			
+			if(anim != null){
+				batch.draw(currentFrame, getX()-5,getY(), 40, 40);
+			}else{
+				batch.draw(image, getX(),getY(), 30, 30);
+			}
 
 		}
 
@@ -205,7 +206,7 @@ public class LoadingScreen implements Screen {
 		public void act(float delta) {
 			super.act(delta);
 			stateTime += delta; // Accumulate elapsed animation time
-	        currentFrame = flameAnimation.getKeyFrame(stateTime, true);
+	        currentFrame = anim.getKeyFrame(stateTime, true);
 		}
 		
 	}

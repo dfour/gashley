@@ -60,8 +60,8 @@ public class MenuScreen extends Scene2dScreenBase {
 		btnQuit.setChecked(false);	
 		
 		// for debug only //
-		MenuScreen.this.returnScreen = GashleyGame.GAME;
-		MenuScreen.this.isReturning = true;
+		//MenuScreen.this.returnScreen = GashleyGame.GAME;
+		//MenuScreen.this.isReturning = true;
 		
 	}
 	

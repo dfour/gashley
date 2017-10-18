@@ -1,0 +1,20 @@
+
+gui.png
+format: RGBA8888
+filter: Nearest,Nearest
+repeat: none
+gui
+  rotate: false
+  xy: 1, 19
+  size: 264, 264
+  split: 25, 25, 25, 33
+  orig: 264, 264
+  offset: 0, 0
+  index: -1
+gui_button
+  rotate: false
+  xy: 1, 1
+  size: 16, 16
+  orig: 16, 16
+  offset: 0, 0
+  index: -1

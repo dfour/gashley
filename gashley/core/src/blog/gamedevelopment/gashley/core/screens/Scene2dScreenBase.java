@@ -26,8 +26,9 @@ public class Scene2dScreenBase implements Screen{
 	protected int sh;
 	protected TextureAtlas atlasGui;
 	protected TiledDrawable bgTiled;
-	protected float fadeIn = 0.01f;
-	protected float fadeOut = 0.01f;  //temp debug speed to make it quick
+	protected float transitionSpeed = 1f;
+	protected float fadeIn = transitionSpeed;
+	protected float fadeOut = transitionSpeed;  //temp debug speed to make it quick
 	protected boolean isReturning = false;
 	protected int returnScreen;
 	
@@ -37,14 +38,14 @@ public class Scene2dScreenBase implements Screen{
 		pb = new SpriteBatch();
 		
 		atlasGui = parent.assMan.manager.get("images/loading.atlas");
-		bgTiled = new TiledDrawable(atlasGui.findRegion("flamebackground"));
+		bgTiled = new TiledDrawable(atlasGui.findRegion("background"));
 		skin = parent.assMan.manager.get("skin/glassy-ui.json",Skin.class);
 		
 	}
 
 	@Override
 	public void show() {
-		Image title = new Image(atlasGui.findRegion("staying-alight-logo"));
+		Image title = new Image(atlasGui.findRegion("logo"));
 
 		
 		rootTable = new Table();
@@ -81,6 +82,9 @@ public class Scene2dScreenBase implements Screen{
 			displayTable.setColor(1,1,1,fadeOut);
 			if(fadeOut <= 0){
 				parent.changeScreen(returnScreen);
+				this.isReturning = false;
+				this.fadeOut = transitionSpeed;
+				this.fadeIn = transitionSpeed;
 			}
 		}
 		

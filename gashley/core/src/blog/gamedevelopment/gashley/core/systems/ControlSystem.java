@@ -3,12 +3,10 @@ package blog.gamedevelopment.gashley.core.systems;
 import blog.gamedevelopment.gashley.core.components.B2dBodyComponent;
 import blog.gamedevelopment.gashley.core.components.ControllableComponent;
 import blog.gamedevelopment.gashley.core.input.GashleyBaseController;
-
 import com.badlogic.ashley.core.ComponentMapper;
 import com.badlogic.ashley.core.Entity;
 import com.badlogic.ashley.core.Family;
 import com.badlogic.ashley.systems.IteratingSystem;
-import com.badlogic.gdx.InputProcessor;
 
 
 public class ControlSystem extends IteratingSystem{
